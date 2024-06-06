@@ -1,5 +1,5 @@
 # Basic implementation of TCP/IP connection (Linux + Windows)
-![preview](preview.png)
+![preview](preview.jpg)
 This example was developed as an illustrative implementation of client-server architecture. The client is designed for the Windows x64 operating system, while the server is developed for the Linux operating system.
 This project implements communication methods which will be discussed below.
 
