@@ -13,6 +13,16 @@ git clone https://github.com/soamane/linux-basic-sockets.git
 **This repository does not include any additional external libraries; everything is based on the built-in Windows/POSIX libraries.**
 
 # Usage
-+ **Install the repository on your computer**
++ **Change the address and port of the endpoint (remote server) in each main.cpp file of the projects.**
+  ### Client (main.cpp)
+  ```C++
+  Client client;
+	client.JoinToServer("193.124.114.141", 1337);
+  ```
+  ### Server (main.cpp)
+  ```C++
+  Server server;
+	server.Start("193.124.114.141", 1337);
+  ```
 + **Build the project using any of the available methods**
   - For instance, the server was built using the built-in Linux application development system in Visual Studio 2022.
