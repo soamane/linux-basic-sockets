@@ -1,7 +1,6 @@
 #include "session.h"
 
-#include <unistd.h>
-#include <thread>
+#include "../terminal/terminal.h"
 
 Session::Session(CurrentConnection& connection) : currentConnection(connection), packetHandler(connection) {
 

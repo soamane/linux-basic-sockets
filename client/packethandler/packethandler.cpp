@@ -16,7 +16,7 @@ bool PacketHandler::SendStringPacket(const std::string& packet) {
     if (!SendAllBytes(packet.data(), static_cast<int>(packet.size()))) {
         return false;
     }
-
+    
     return true;
 }
 
