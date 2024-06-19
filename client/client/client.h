@@ -14,7 +14,7 @@ private:
 	void Join();
 
 private:
-	SOCKET currentSocket;
+	std::shared_ptr<SOCKET> currentSocket;
 };
 
 #endif // !CLIENT_H

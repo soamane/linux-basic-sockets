@@ -3,6 +3,7 @@
 #define SERVER_H
 
 #include <vector>
+#include <memory>
 
 #include "../sockets/sockets.h"
 #include "../terminal/terminal.h"
@@ -12,7 +13,7 @@ public:
 	void Start(std::string_view address, unsigned short port);
 
 private:
-	std::vector<CurrentConnection> connections;
+	std::vector<std::shared_ptr<CurrentConnection>> connections;
 };
 
 #endif // !SERVER_H

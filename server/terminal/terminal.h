@@ -3,7 +3,8 @@
 #define TERMINAL_H
 
 #include <mutex>
-#include <string_view>
+#include <string>
+#include <initializer_list>
 
 namespace Terminal {
 	enum PrintType {
@@ -13,7 +14,7 @@ namespace Terminal {
 		SERVER
 	};
 
-	void Print(PrintType type, std::string_view info);
+	void Print(PrintType type, std::initializer_list<std::string> info);
 }
 
 #endif // !TERMINAL_H

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-PacketHandler::PacketHandler(SOCKET currentSocket) : currentSocket(currentSocket) {
+PacketHandler::PacketHandler(std::shared_ptr<SOCKET> currentSocket) : currentSocket(currentSocket) {
 
 }
 
@@ -38,7 +38,7 @@ const std::string PacketHandler::ReceiveStringPacket() {
 bool PacketHandler::SendAllBytes(const char* buffer, int length) {
     int totalBytesSent = 0;
     while (totalBytesSent < length) {
-        int bytesSent = send(this->currentSocket, buffer + totalBytesSent, length - totalBytesSent, 0);
+        int bytesSent = send(*this->currentSocket, buffer + totalBytesSent, length - totalBytesSent, 0);
         if (bytesSent <= 0) {
             return false;
         }
@@ -51,7 +51,7 @@ bool PacketHandler::SendAllBytes(const char* buffer, int length) {
 bool PacketHandler::ReceiveAllBytes(char* buffer, int length) {
     int totalBytesReceived = 0;
     while (totalBytesReceived < length) {
-        int bytesReceived = recv(this->currentSocket, buffer + totalBytesReceived, length - totalBytesReceived, 0);
+        int bytesReceived = recv(*this->currentSocket, buffer + totalBytesReceived, length - totalBytesReceived, 0);
         if (bytesReceived <= 0) {
             return false;
         }

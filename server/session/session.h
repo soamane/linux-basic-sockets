@@ -7,14 +7,14 @@
 
 class Session {
 public:
-    Session(CurrentConnection& connection);
+    Session(std::shared_ptr<CurrentConnection> connection);
     ~Session();
 
     void Run();
 
 private:
-	CurrentConnection& currentConnection;
-    PacketHandler packetHandler;
+	std::shared_ptr<CurrentConnection> currentConnection;
+    std::unique_ptr<PacketHandler> packetHandler;
 };
 
 #endif // !SESSION_H

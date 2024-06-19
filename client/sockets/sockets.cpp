@@ -11,19 +11,20 @@ Sockets::~Sockets() {
     CleanupWSA();
 }
 
-SOCKET Sockets::Connect(std::string_view address, u_short port) const {
-    static SOCKET clientSocket = CreateClientSocket();
+std::shared_ptr<SOCKET> Sockets::Connect(std::string_view address, u_short port) const {
+    SOCKET clientSocket = CreateClientSocket();
     if (clientSocket == INVALID_SOCKET) {
         throw std::runtime_error("Socket creation failed");
     }
-    static sockaddr_in endpoint = GetEndpointData(address, port);
+    
+    sockaddr_in endpoint = GetEndpointData(address, port);
 
     if (connect(clientSocket, reinterpret_cast<sockaddr*>(&endpoint), sizeof(endpoint)) == SOCKET_ERROR) {
         closesocket(clientSocket);
-        return INVALID_SOCKET;
+        return nullptr;
     }
 
-    return clientSocket;
+    return std::make_shared<SOCKET>(clientSocket);
 }
 
 sockaddr_in Sockets::GetEndpointData(std::string_view address, u_short port) const {

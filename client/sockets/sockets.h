@@ -2,8 +2,9 @@
 #ifndef SOCKETS_H
 #define SOCKETS_H
 
-#include <string_view>
+#include <memory>
 #include <WinSock2.h>
+#include <string_view>
 
 class Sockets {
 public:
@@ -11,7 +12,7 @@ public:
 	~Sockets();
 
 protected:
-	SOCKET Connect(std::string_view address, u_short port) const;
+	std::shared_ptr<SOCKET> Connect(std::string_view address, u_short port) const;
 
 private:
 	sockaddr_in GetEndpointData(std::string_view address, u_short port) const;

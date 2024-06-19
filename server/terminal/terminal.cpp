@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-void Terminal::Print(PrintType type, std::string_view info) {
+void Terminal::Print(PrintType type, std::initializer_list<std::string> info) {
 	switch (type) {
 		case Terminal::INFO:
 			std::cout << termcolor::bold << termcolor::bright_green << "[INFO]" << ' ';
@@ -26,5 +26,11 @@ void Terminal::Print(PrintType type, std::string_view info) {
 			break;
 	}
 
-	std::cout << termcolor::reset << info << std::endl;
+	std::cout << termcolor::reset;
+
+	for (auto word : info) {
+		std::cout << word;
+	}
+
+	std::cout << std::endl;
 }

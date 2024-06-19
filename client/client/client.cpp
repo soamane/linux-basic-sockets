@@ -8,7 +8,7 @@
 
 void Client::JoinToServer(std::string_view address, USHORT port) {
 	this->currentSocket = this->Connect(address, port);
-	if (this->currentSocket == INVALID_SOCKET) {
+	if (*this->currentSocket == INVALID_SOCKET) {
 		return;
 	}
 
@@ -16,6 +16,6 @@ void Client::JoinToServer(std::string_view address, USHORT port) {
 }
 
 void Client::Join() {
-	std::unique_ptr<Session> currentSession = std::make_unique<Session>(this->currentSocket);
+	std::unique_ptr<Session> currentSession = std::make_unique<Session>(std::move(this->currentSocket));
 	currentSession->Run();
 }

@@ -8,14 +8,14 @@
 
 class Session {
 public:
-	Session(SOCKET socket);
+	Session(std::shared_ptr<SOCKET> socket);
 	~Session();
 
 	void Run();
 
 private:
-	const SOCKET socket;
-	PacketHandler packetHandler;
+	std::shared_ptr<SOCKET> currentSocket;
+	std::unique_ptr<PacketHandler> packetHandler;
 };
 
 #endif // !SESSION_H

@@ -33,10 +33,10 @@ const sockaddr_in& Sockets::CreateEndpoint(std::string_view address, unsigned sh
     return endpoint;
 }
 
-const CurrentConnection Sockets::Accept(std::string_view address, unsigned short port) const {
+const std::shared_ptr<CurrentConnection> Sockets::Accept(std::string_view address, unsigned short port) const {
     static SOCKET baseSocket = this->InitBaseSocket(address, port);
     if (baseSocket == -1) {
-        return CurrentConnection{ };
+        return nullptr;
     }
 
     sockaddr_in clientInfo{};
@@ -46,10 +46,10 @@ const CurrentConnection Sockets::Accept(std::string_view address, unsigned short
 
     currentConnection.socket = accept(baseSocket, reinterpret_cast<sockaddr*>(&clientInfo), &clientInfoSize);
     if (currentConnection.socket == -1) {
-        return CurrentConnection{ };
+        return nullptr;
     }
 
     currentConnection.info = clientInfo;
 
-    return currentConnection;
+    return std::make_shared<CurrentConnection>(currentConnection);
 }
