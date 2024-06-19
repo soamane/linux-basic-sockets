@@ -2,6 +2,9 @@
 This example was developed as an illustrative implementation of client-server architecture. The client is designed for the Windows x64 operating system, while the server is developed for the Linux operating system.
 This project implements communication methods which will be discussed below.
 
+![LZvewHk95Gk](https://github.com/soamane/linux-basic-sockets/assets/143885288/17935094-4b84-40d9-87ad-c18d3a1a1e9f)
+
+
 # Installing
 To clone the repository, you can simply use the universal git cloning method:
 ```
